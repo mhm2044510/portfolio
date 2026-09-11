@@ -1,9 +1,42 @@
+import { useState } from "react";
+
 export function ContactForm() {
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState("idle");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Wire this up to your form backend / email service of choice.
-    console.log("Contact form submitted");
+    setStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Append Web3Forms access key
+    formData.append("access_key", "626425c3-4205-44a3-9823-2df07dae3249");
+    formData.append("subject", "New Portfolio Contact Message");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setStatusMessage("Message sent successfully!");
+        form.reset();
+      } else {
+        setStatus("error");
+        setStatusMessage(data.message || "Something went wrong.");
+      }
+    } catch (error) {
+      setStatus("error");
+      setStatusMessage("Network error. Please try again later.");
+    }
   };
+
   return (
     <div
       className="rounded-[10px] border p-7"
@@ -106,15 +139,28 @@ export function ContactForm() {
 
         <button
           type="submit"
-          className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-all hover:brightness-110 hover:-translate-y-px"
+          disabled={status === "submitting"}
+          className="mt-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg text-[13px] font-semibold transition-all hover:brightness-110 hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed"
           style={{
             fontFamily: "var(--font-mono)",
             background: "linear-gradient(135deg, var(--color-copper), #b8631f)",
             color: "rgb(10, 12, 16)",
           }}
         >
-          Send Message →
+          {status === "submitting" ? "Sending..." : "Send Message →"}
         </button>
+
+        {statusMessage && (
+          <p
+            className="text-[13px] mt-2 text-center"
+            style={{
+              fontFamily: "var(--font-mono)",
+              color: status === "success" ? "var(--color-teal)" : "#f87171",
+            }}
+          >
+            {statusMessage}
+          </p>
+        )}
       </form>
     </div>
   );
