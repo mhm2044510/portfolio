@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@import "tailwindcss";
+
+/* ================================
+   CSS Variables
+================================ */
+
+:root {
+  --color-bg: #0a0c10;
+  --color-bg-panel: #10141b;
+  --color-bg-panel-2: #161b24;
+  --color-line: #1e2530;
+
+  --color-text: #eef0f3;
+  --color-text-dim: #8b93a1;
+  --color-text-faint: #5b6472;
+
+  --color-copper: #d9822b;
+  --color-copper-dim: rgba(217, 130, 43, 0.4);
+
+  --color-teal: #35d0c0;
+  --color-teal-dim: rgba(53, 208, 192, 0.4);
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ================================
+   Tailwind Theme
+================================ */
+
+@theme {
+  --color-bg: var(--color-bg);
+  --color-panel: var(--color-bg-panel);
+  --color-panel-2: var(--color-bg-panel-2);
+  --color-line: var(--color-line);
+
+  --color-text: var(--color-text);
+  --color-text-dim: var(--color-text-dim);
+  --color-text-faint: var(--color-text-faint);
+
+  --color-copper: var(--color-copper);
+  --color-copper-dim: var(--color-copper-dim);
+
+  --color-teal: var(--color-teal);
+  --color-teal-dim: var(--color-teal-dim);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ================================
+   Global
+================================ */
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* ================================
+   Animations
+================================ */
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ================================
+   Utilities
+================================ */
+
+.gradient-text {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-copper),
+    var(--color-teal)
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ================================
+   Navigation
+================================ */
+
+.nav-link {
+  color: var(--color-text-dim);
+  background: transparent;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  background: var(--color-bg-panel-2);
+}
+
+.nav-link.active {
+  color: var(--color-copper);
+  background: rgba(217, 130, 43, 0.08);
+}
