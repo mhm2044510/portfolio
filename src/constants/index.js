@@ -167,14 +167,14 @@ const CONTACT_LINKS = [
     icon: "⌥",
     label: "GitHub",
     value: "github.com/mahmoudnababteh",
-    href: "https://github.com/mahmoudnababteh",
+    href: "https://github.com/mhm2044510",
     external: true,
   },
   {
     icon: "in",
     label: "LinkedIn",
     value: "linkedin.com/in/mahmoud-nababteh",
-    href: "https://linkedin.com/in/mahmoud-nababteh",
+    href: "www.linkedin.com/in/mahmoud-nababteh-2785b0214",
     external: true,
   },
   {
