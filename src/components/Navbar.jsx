@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 export function Navbar({ NAV_LINKS = [] }) {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen((prev) => !prev);
   const closeMenu = () => setIsOpen(false);
-
+  const [isActive, setIsActive] = useState("#home");
   return (
     <nav
       className="sticky top-0 z-50 border-b"
@@ -103,9 +101,12 @@ export function Navbar({ NAV_LINKS = [] }) {
             <li key={link.href}>
               <a
                 href={link.href}
-                onClick={closeMenu}
+                onClick={() => {
+                  closeMenu();
+                  setIsActive(link.href);
+                }}
                 className={`nav-link px-3.5 py-2.5 rounded-[6px] transition-all duration-150 block ${
-                  link.href === "#contact" ? "active" : ""
+                  link.href === isActive ? "active" : ""
                 }`}
               >
                 {link.label}
