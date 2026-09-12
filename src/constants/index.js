@@ -174,7 +174,7 @@ const CONTACT_LINKS = [
     icon: "in",
     label: "LinkedIn",
     value: "linkedin.com/in/mahmoud-nababteh",
-    href: "www.linkedin.com/in/mahmoud-nababteh-2785b0214",
+    href: "https://www.linkedin.com/in/mahmoud-nababteh-2785b0214/",
     external: true,
   },
   {
